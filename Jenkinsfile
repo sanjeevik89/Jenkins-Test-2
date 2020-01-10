@@ -9,8 +9,8 @@ pipeline {
 
       }
       steps {
-        echo "Source Server ${params.Source_Server}"
-        echo "Source File Location: ${params.Source_File_Location}"
+        echo 'Source Server ${params.Source_Server}'
+        echo 'Source File Location: ${params.Source_File_Location}'
         echo "Source File Name: ${params.Source_File_Name}"
         echo "Destination Server ${params.Destination_Server}"
         echo "Destination File Location: ${params.Destination_File_Location}"

@@ -15,7 +15,7 @@ pipeline {
         
         stage('Example-1') {
             when {                
-                params name: 'TOGGLE', value: false
+                expression { params.TOGGLE == false }
             }
             steps {
                 echo "Hello ${params.PERSON}"

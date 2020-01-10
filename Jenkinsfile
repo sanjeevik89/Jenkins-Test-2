@@ -9,8 +9,8 @@ pipeline {
 
       }
       steps {
-        echo 'Source Server '${params.Source_Server}
-        echo 'Source File Location: '${params.Source_File_Location}
+        echo "Source Server ${params.Source_Server}"
+        echo "Source File Location: ${params.Source_File_Location}"
         echo "Source File Name: ${params.Source_File_Name}"
         echo "Destination Server ${params.Destination_Server}"
         echo "Destination File Location: ${params.Destination_File_Location}"
@@ -43,8 +43,8 @@ pipeline {
       }
       steps {
         echo 'Pulling Files from Source..'
-        sh 'ssh -q --batch-mode user@${params.Source_Server} "dzdo /opt/envmgr/bin/pull_files_source -l ${params.Source_File_Location} -f ${params.Source_File_Name} -e ${params.Is_PGP_Encrypted_File}"'
-        sh 'scp -q --batch-mode user@${params.Source_Server}:/tmp/dde_file_copy/${params.Source_File_Name} .'
+        sh ssh -q --batch-mode user@${params.Source_Server} "dzdo /opt/envmgr/bin/pull_files_source -l ${params.Source_File_Location} -f ${params.Source_File_Name} -e ${params.Is_PGP_Encrypted_File}"
+        sh scp -q --batch-mode user@${params.Source_Server}:/tmp/dde_file_copy/${params.Source_File_Name} .
       }
     }
 

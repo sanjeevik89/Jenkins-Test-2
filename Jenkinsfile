@@ -12,6 +12,8 @@ pipeline {
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     }
     stages {
+        
+        
         stage('Example-1') {
             steps {
                 echo "Hello ${params.PERSON}"
@@ -25,39 +27,44 @@ pipeline {
                 echo "Password: ${params.PASSWORD}"
             }
         }
-       stage('Example-2') {
-           steps {
+    }
+}      
+        node {
+      stage('Example-2') {
+      
         try {
             sh 'exit 1'
         }
         catch (exc) {
             echo 'Something failed, I should sound the klaxons!'            
         }
-           finally {
-               echo 'This is printed always'
-           }
-           }
+          finally {
+              echo 'This is printed always'
+          }
+    
     }
-       stage('Example-3') {
-           steps {
+    
+    
+    stage('Example-3') {
+    
         if (env.BRANCH_NAME == 'master') {
             echo 'I only execute on the master branch'
         } else {
             echo 'I execute elsewhere'
-        } 
-           }
+        }
+    
     }
-       stage('Example-4') {
-           steps {
+
+
+      stage('Example-4') {
+    
         if (params.TOGGLE == true) {
             echo 'I only execute on the master branch'
         } else {
             echo 'I execute elsewhere'
         }
-           }
-    }
-       
-  }
     
-}
+    }
+    
+        }
 

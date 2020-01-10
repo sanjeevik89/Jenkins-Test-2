@@ -20,20 +20,6 @@ pipeline {
       }
     }
 
-    stage('Test-SSH') {
-      post {
-        success {
-          echo 'Able to connect to DDE servers over SSH.'
-        }
-
-      }
-      steps {
-        echo 'Testing SSH Connectivity..'
-        sh 'ssh -o StrictHostKeyChecking=no user@server1 uptime'
-        sh 'ssh -o StrictHostKeyChecking=no user@server2 uptime'
-      }
-    }
-
     stage('Pull-Files') {
       post {
         success {

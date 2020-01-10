@@ -26,6 +26,7 @@ pipeline {
             }
         }
        stage('Example-2') {
+           steps {
         try {
             sh 'exit 1'
         }
@@ -35,20 +36,25 @@ pipeline {
            finally {
                echo 'This is printed always'
            }
+           }
     }
        stage('Example-3') {
+           steps {
         if (env.BRANCH_NAME == 'master') {
             echo 'I only execute on the master branch'
         } else {
             echo 'I execute elsewhere'
-        }
+        } 
+           }
     }
-       stage('Example') {
+       stage('Example-4') {
+           steps {
         if (params.TOGGLE == true) {
             echo 'I only execute on the master branch'
         } else {
             echo 'I execute elsewhere'
         }
+           }
     }
        
   }

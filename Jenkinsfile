@@ -11,10 +11,12 @@ pipeline {
 
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     }
-    stages {
-        
+    stages {          
         
         stage('Example-1') {
+            when {                
+                params name: 'TOGGLE', value: false
+            }
             steps {
                 echo "Hello ${params.PERSON}"
 

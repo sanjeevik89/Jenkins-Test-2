@@ -30,9 +30,11 @@ pipeline {
             sh 'exit 1'
         }
         catch (exc) {
-            echo 'Something failed, I should sound the klaxons!'
-            throw
+            echo 'Something failed, I should sound the klaxons!'            
         }
+           finally {
+               echo 'This is printed always'
+           }
     }
        stage('Example-3') {
         if (env.BRANCH_NAME == 'master') {

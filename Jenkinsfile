@@ -29,8 +29,8 @@ pipeline {
       }
       steps {
         echo 'Testing SSH Connectivity..'
-        sh 'ssh -o StrictHostKeyChecking=no envmgr@serite11 uptime'
-        sh 'ssh -o StrictHostKeyChecking=no envmgr@ngmdlx-wetm2 uptime'
+        sh 'ssh -o StrictHostKeyChecking=no user@server1 uptime'
+        sh 'ssh -o StrictHostKeyChecking=no user@server2 uptime'
       }
     }
 
@@ -43,8 +43,8 @@ pipeline {
       }
       steps {
         echo 'Pulling Files from Source..'
-        sh 'ssh -q --batch-mode envmgr@${params.Source_Server} "dzdo /opt/envmgr/bin/pull_files_source -l ${params.Source_File_Location} -f ${params.Source_File_Name} -e ${params.Is_PGP_Encrypted_File}"'
-        sh 'scp -q --batch-mode envmgr@${params.Source_Server}:/tmp/dde_file_copy/${params.Source_File_Name} .'
+        sh 'ssh -q --batch-mode user@${params.Source_Server} "dzdo /opt/envmgr/bin/pull_files_source -l ${params.Source_File_Location} -f ${params.Source_File_Name} -e ${params.Is_PGP_Encrypted_File}"'
+        sh 'scp -q --batch-mode user@${params.Source_Server}:/tmp/dde_file_copy/${params.Source_File_Name} .'
       }
     }
 

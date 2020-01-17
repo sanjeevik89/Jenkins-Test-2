@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+    stages {
+        stage('Example') {
+            input {
+                message "Should we encrypt the destination file?"
+                ok "Continue."
+                parameters {
+                    booleanParam(name: 'PGP_DESTN', defaultValue: false, description: 'Enable this to encrypt the file in destination server')
+                }
+            }
+            steps {
+                echo "Hello, ${PGP_DESTN} is encrypted."
+            }
+        }
+    }
+}

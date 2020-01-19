@@ -1,0 +1,22 @@
+def normalVersion = 'tester.dat.pgp'
+def awesomeVersion = 'UNKNOWN'
+
+pipeline {
+  agent any
+  stages {
+    stage('build') {
+      steps {
+        script {
+          //normalVersion = sh(returnStdout: true, script: '/tmp/test.sh').trim()
+          normalVersion = sh(returnStdout: true, script: "echo ${normalVersion} | sed s/.pgp//g").trim()
+          awesomeVersion = sh(returnStdout: true, script: 'echo 0.0.1')
+        }
+      }
+    }
+    stage('output_version') {
+      steps {
+        echo "${normalVersion} : ${awesomeVersion}"
+      }
+    }
+  }
+}
